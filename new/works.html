@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="./js/news.js"></script>
+</head>
+
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li class="logo"><a href="#"><img src="" alt=""></a></li>
+				<li><a href="index.html">首页</a></li>
+				<li>
+					<a href="#">关于沙塔</a>
+					<ul class="subnav">
+						<li><a href="about=1?about=about?aboutPage=1">公司概况</a></li>
+						<li><a href="#">发展战略</a></li>
+						<li><a href="#">联系我们</a></li>
+					</ul>
+
+				</li>
+				<li>
+					<a href="news.html">新闻资讯</a>
+					<ul class="subnav">
+						<li><a href="news_com.html">公司新闻</a></li>
+						<li><a href="news_world.html">行业资讯</a></li>
+					</ul>
+				</li>
+				<li><a href="#">公司作品</a></li>
+				<li><a href="#">企业文化</a></li>
+			</ul>
+		</nav>
+	</header>
+	<div class="news_content">
+		<div class="small_banner">
+			<img src="./img/small_banner1.jpg" alt="">
+			<p>锐意进取<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;追求卓越</p>
+		</div>
+		<div class="news">
+			<div class="news_title">
+				<h1>公司作品&nbsp;&nbsp;<span>The&nbsp;company&nbsp;works</span></h1>
+			</div>
+      <div id="worksList">
+        <!--<li class="works"></li>
+        <li class="works"></li>
+        <li class="works"></li>
+        <li class="works"></li>
+        <li class="works"></li>
+        <li class="works"></li>
+        <li class="works"></li>
+        <li class="works"></li>
+        <li class="works"></li>-->
+      </div>
+		</div>
+	</div>
+	<footer>
+		<div class="state">
+			<p>
+				网络文化经营许可证：粤文[2013]0245-095号 <br> 增值电信业务经营许可证: 粤B2-20070379 &nbsp;<a href="#">粤ICP备09210879号</a> 中华人民共和国互联网药品信息服务资格证：（粤）-非经营性-2011-0120 <br> 穗公网监备案证第44010650010141号 违法和不良信息举报：020-66826682 <br> ©2004-2017 广州市动景计算机科技有限公司 版权所有
+			</p>
+
+		</div>
+	</footer>
+  <script type="text/javascript">
+  function ajax(data) {
+    //data = {data:"",dataType:"xml/json",type:"get/post",url:"",asyn:"true/false",success:function(){},failure:function(){}}
+    var xhr = null;
+    if (window.XMLHttpRequest) {
+      xhr = new XMLHttpRequest();
+    } else {
+      xhr = new ActiveXObject('Microsoft.XMLHTTP');
+    }
+    var type = data.type == 'get' ? 'get' : 'post';
+    var url = '';
+    if (data.url) {
+      url = data.url;
+      if (type == 'get') {
+        url += "?" + data.data + "&_t=" + new Date().getTime();
+      }
+    }
+    var flag = data.asyn == 'true' ? 'true' : 'false';
+    xhr.open(type, url, flag);
+    if (type == 'get') {
+      xhr.send(null);
+    } else if (type == 'post') {
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.send(data.data);
+    }
+
+    xhr.onreadystatechange = function() {
+      if (this.readyState == 4) {
+        if (this.status == 200) {
+          if (typeof data.success == 'function') {
+            var d = data.dataType == 'xml' ? xhr.responseXML : xhr.responseText;
+            data.success(d);
+          }
+        } else {
+          if (typeof data.failure == 'function') {
+            data.failure();
+          }
+        }
+      }
+    }
+  }
+    data = {
+    url: "works_list",
+    success: function(data) {
+      var worksBox = document.getElementById('worksList');
+      var works = JSON.parse(data).works_list;
+      console.log(works);
+      for(var i=0;i<works.length;i++){
+        var li = document.createElement("li");
+        worksBox.appendChild(li);
+        li.className = "works";
+      }
+      //console.log(worksList);
+      var worksList = document.getElementById('worksList').children;
+      console.log(worksList.length);
+      for(var i=1;i<worksList.length;i+=3){
+        worksList[i].style.margin="0 0 0 4.75%";
+      }
+      for(var i=0;i<worksList.length;i+=3){
+        worksList[i].style.float="left";
+      }
+      for(var i=0;i<worksList.length;i++){
+        worksList[i].style.background = "url("+works[i].img+") no-repeat";
+        var box = document.createElement('div');
+        worksList[i].appendChild(box);
+        box.className = "hoverBox";
+        box.innerHTML = '<a href="worksPage'+(i+1)+'.html">'+works[i].worksTitle+'</a>';
+
+      }
+      $('#worksList').on("mouseenter","li",function(){
+        $(this).children().fadeIn(500);
+      });
+      $('#worksList').on("mouseleave","li",function(){
+        $(this).children().stop(true,false);
+        $(this).children().fadeOut(500);
+      });
+    }}
+    ajax(data);
+    //$(".hoverBox").fadeIn(3000);
+  </script>
+	<!--<script type="text/javascript" src="./js/main.js"></script>-->
+</body>
+</html>

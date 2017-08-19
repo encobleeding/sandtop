@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="./js/news.js"></script>
+</head>
+
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li class="logo"><a href="#"><img src="" alt=""></a></li>
+				<li><a href="index.html">首页</a></li>
+				<li>
+					<a href="#">关于沙塔</a>
+					<ul class="subnav">
+						<li><a href="about=1?about=about?aboutPage=1">公司概况</a></li>
+						<li><a href="#">发展战略</a></li>
+						<li><a href="#">联系我们</a></li>
+					</ul>
+
+				</li>
+				<li>
+					<a href="news.html">新闻资讯</a>
+					<ul class="subnav">
+						<li><a href="news_com.html">公司新闻</a></li>
+						<li><a href="news_world.html">行业资讯</a></li>
+					</ul>
+				</li>
+				<li><a href="works.html">公司作品</a></li>
+				<li><a href="#">企业文化</a></li>
+			</ul>
+		</nav>
+	</header>
+	<div class="news_content">
+		<div class="small_banner">
+			<img src="./img/small_banner1.jpg" alt="">
+			<p>锐意进取<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;追求卓越</p>
+		</div>
+		<div class="news">
+			<div class="news_title">
+				<h1>行业资讯&nbsp;&nbsp;<span>Industry&nbsp;information</span></h1>
+			</div>
+			<div id="news_list">
+				<ul id="box_list">
+					<!--<li><a href="#">“洪水无情，天舟有爱”——我公司积极投身救灾慰问活动</a><span>2017.6.21</span></li>
+					<li><a href="#">“洪水无情，天舟有爱”——我公司积极投身救灾慰问活动</a><span>2017.6.21</span></li>
+					<li><a href="#">“洪水无情，天舟有爱”——我公司积极投身救灾慰问活动</a><span>2017.6.21</span></li>
+					<li><a href="#">“洪水无情，天舟有爱”——我公司积极投身救灾慰问活动</a><span>2017.6.21</span></li>
+					<li><a href="#">“洪水无情，天舟有爱”——我公司积极投身救灾慰问活动</a><span>2017.6.21</span></li>
+					<li><a href="#">“洪水无情，天舟有爱”——我公司积极投身救灾慰问活动</a><span>2017.6.21</span></li>
+					<li><a href="#">“洪水无情，天舟有爱”——我公司积极投身救灾慰问活动</a><span>2017.6.21</span></li>
+					<li><a href="#">“洪水无情，天舟有爱”——我公司积极投身救灾慰问活动</a><span>2017.6.21</span></li>
+					<li><a href="#">“洪水无情，天舟有爱”——我公司积极投身救灾慰问活动</a><span>2017.6.21</span></li>
+					<li><a href="#">“洪水无情，天舟有爱”——我公司积极投身救灾慰问活动</a><span>2017.6.21</span></li>-->
+				</ul>
+			</div>
+		</div>
+		<div id="page">
+			<ul id="pageUl">
+				<!--<span>首页</span>
+				<span>上一页</span>
+				<span>1</span>
+				<span>2</span>
+				<span>3</span>
+				<span>4</span>
+				<span>5</span>
+				<span>6</span>
+				<span>7</span>
+				<span>下一页</span>
+				<span>尾页</span>
+				<li><a href="#">首页</a></li>
+				<li><a href="#">上一页</a></li>
+				<li><a href="#" class="pageOn">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#">6</a></li>
+				<li><a href="#">7</a></li>
+				<li><a href="#">8</a></li>
+				<li><a href="#">...</a></li>
+				<li><a href="#">下一页</a></li>
+				<li><a href="#">尾页</a></li>-->
+			</ul>
+		</div>
+	</div>
+	<footer>
+		<div class="state">
+			<p>
+				网络文化经营许可证：粤文[2013]0245-095号 <br> 增值电信业务经营许可证: 粤B2-20070379 &nbsp;<a href="#">粤ICP备09210879号</a> 中华人民共和国互联网药品信息服务资格证：（粤）-非经营性-2011-0120 <br> 穗公网监备案证第44010650010141号 违法和不良信息举报：020-66826682 <br> ©2004-2017 广州市动景计算机科技有限公司 版权所有
+			</p>
+
+		</div>
+	</footer>
+
+	<script type="text/javascript">
+		function ajax(data) {
+			//data = {data:"",dataType:"xml/json",type:"get/post",url:"",asyn:"true/false",success:function(){},failure:function(){}}
+			var xhr = null;
+			if (window.XMLHttpRequest) {
+				xhr = new XMLHttpRequest();
+			} else {
+				xhr = new ActiveXObject('Microsoft.XMLHTTP');
+			}
+			var type = data.type == 'get' ? 'get' : 'post';
+			var url = '';
+			if (data.url) {
+				url = data.url;
+				if (type == 'get') {
+					url += "?" + data.data + "&_t=" + new Date().getTime();
+				}
+			}
+			var flag = data.asyn == 'true' ? 'true' : 'false';
+			xhr.open(type, url, flag);
+			if (type == 'get') {
+				xhr.send(null);
+			} else if (type == 'post') {
+				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhr.send(data.data);
+			}
+
+			xhr.onreadystatechange = function() {
+				if (this.readyState == 4) {
+					if (this.status == 200) {
+						if (typeof data.success == 'function') {
+							var d = data.dataType == 'xml' ? xhr.responseXML : xhr.responseText;
+							data.success(d);
+						}
+					} else {
+						if (typeof data.failure == 'function') {
+							data.failure();
+						}
+					}
+				}
+			}
+		}
+		data = {
+			url: "WorldNews_list",
+			success: function(data) {
+				var box = document.getElementById("box_list");
+				var pageUl = document.getElementById('pageUl');
+				var btn = document.getElementsByClassName('pageNumList');
+				//console.log(pageNum);
+				//console.log(JSON.parse(data));
+				var page = 1;
+				var num = 1;
+				var arrList = JSON.parse(data).news_list;
+				var pageNum = Math.ceil(arrList.length / 10);
+				//console.log(arrList[1]);
+				//console.log(arrList[1].listTitle);
+				//console.log(arrList.length);
+				function makePageList(page) {
+					if (box.children.length > 0) {
+						//console.log(box);
+						box.innerHTML = "";
+					}
+					//console.log(arrList[0].href);
+					if (page == pageNum && arrList.length % 10 > 0) {
+						for (var i = (page - 1) * 10; i < (arrList.length % 10 + (page - 1) * 10); i++) {
+
+							var li = document.createElement("li");
+							li.innerHTML = '<a href="news_content=new?news=3?page='+(i+1)+'">' + arrList[i].newsTitle + '</a><span>' + arrList[i].time + '</span>';
+							//console.log(li.innerHTML);
+							box.appendChild(li);
+							var a = li.children;
+							a[0].index = i + 1;
+						}
+					} else {
+						for (var i = (page - 1) * 10; i < page * 10; i++) {
+							var li = document.createElement("li");
+							li.innerHTML = '<a href="news_content=new?news=3?page='+(i+1)+'">' + arrList[i].newsTitle + '</a><span>' + arrList[i].time + '</span>';
+							box.appendChild(li);
+							var a = li.children;
+							a[0].index = i + 1;
+							//console.log(a[0].index);
+						}
+					}
+
+				}
+				makePageList(page);
+
+
+				var span = document.createElement("span");
+				span.index = "首页";
+				span.innerHTML = span.index;
+				span.setAttribute("id", "firstPage");
+				pageUl.appendChild(span);
+				var span = document.createElement("span");
+				span.index = "上一页";
+				span.innerHTML = span.index;
+				span.setAttribute("id", "prevPage");
+				pageUl.appendChild(span);
+
+				for (var j = page; j <= pageNum; j++) {
+					var span = document.createElement("span");
+					span.index = j;
+					span.innerHTML = span.index;
+					span.className = "pageNumList";
+					pageUl.appendChild(span);
+					if (j > 7) {
+						span.style.display = "none";
+					} else if (j == 1) {
+						span.className = "pageOn pageNumList";
+					}
+				}
+				var span = document.createElement("span");
+				span.index = "下一页";
+				span.setAttribute("id", "nextPage");
+				span.innerHTML = span.index;
+				pageUl.appendChild(span);
+
+				var span = document.createElement("span");
+				span.index = "尾页";
+				span.innerHTML = span.index;
+				span.setAttribute("id", "lastPage");
+				pageUl.appendChild(span);
+
+				function clickPage(i) {
+
+					document.querySelector('body').scrollTop = 280;
+
+					//alert(this.index);
+					page = btn[i].index;
+
+					for (var j = 0; j < btn.length; j++) {
+						btn[j].className = "pageNumList";
+					}
+					btn[i].className = "pageNumList pageOn";
+					makePageList(page);
+					if (btn[i].index >= 4 && btn[i].index < btn.length - 2) {
+						for (var z = 0; z < btn.length; z++) {
+							btn[z].style.display = 'none';
+						}
+						for (var z = btn[i].index - 1; z >= btn[i].index - 4; z--) {
+							btn[z].style.display = 'block';
+						}
+						for (var z = btn[i].index - 1; z < btn[i].index + 3; z++) {
+							btn[z].style.display = 'block';
+						}
+					}
+					if (btn[i].index == btn.length) {
+						for (var z = 0; z < btn.length; z++) {
+							btn[z].style.display = 'none';
+						}
+						for (var z = btn[i].index - 1; z >= btn[i].index - 7; z--) {
+							btn[z].style.display = 'block';
+						}
+					}
+					if (btn[i].index < 4 && btn[i].index > 1) {
+						for (var z = 0; z < btn.length; z++) {
+							btn[z].style.display = 'none';
+						}
+						for (var z = 0; z < btn[i].index; z++) {
+							btn[z].style.display = 'block';
+							//alert(123);
+						}
+						for (var z = btn[i].index - 1; z < 7; z++) {
+							btn[z].style.display = 'block';
+						}
+					}
+					if (btn[i].index == 1) {
+						for (var z = 0; z < btn.length; z++) {
+							btn[z].style.display = 'none';
+						}
+						for (var z = 0; z < 7; z++) {
+							btn[z].style.display = 'block';
+						}
+					}
+					//this.style.display = 'none';
+
+				}
+				document.getElementById('firstPage').onclick = function() {
+					clickPage(0);
+				}
+				document.getElementById('lastPage').onclick = function() {
+					clickPage(pageNum - 1);
+					//console.log(page);
+				}
+				document.getElementById('nextPage').onclick = function() {
+
+					if (page < pageNum) {
+						//page -= 1;
+						//alert(page);
+						var a = page;
+						clickPage(a);
+					}
+				}
+				document.getElementById('prevPage').onclick = function() {
+					if (page > 1) {
+						var a = page - 2;
+						clickPage(a);
+					}
+				}
+
+
+
+				//console.log(pageUl.children);
+
+				for (var i = 0; i < btn.length; i++) {
+					btn[i].onclick = function() {
+						document.querySelector('body').scrollTop = 280;
+
+						//alert(this.index);
+						page = this.index;
+
+						for (var j = 0; j < btn.length; j++) {
+							btn[j].className = "pageNumList";
+						}
+						this.className = "pageNumList pageOn";
+						makePageList(page);
+						if (this.index >= 4 && this.index < btn.length - 2) {
+							for (var z = 0; z < btn.length; z++) {
+								btn[z].style.display = 'none';
+							}
+							for (var z = this.index - 1; z >= this.index - 4; z--) {
+								btn[z].style.display = 'block';
+							}
+							for (var z = this.index - 1; z < this.index + 3; z++) {
+								btn[z].style.display = 'block';
+							}
+						}
+						//this.style.display = 'none';
+					}
+				}
+
+				//var btnA = document.getElementsByClassName('btnClick');
+				//console.log(btnA.length);
+				/*$('#box_list').on("click", "a", function() {
+					var str = "news_content=news?news=2?id=" + this.index;
+					//console.log(str);
+					data2 = {
+						url: str,
+						success: function(data) {
+							document.querySelector('body').innerHTML = data;
+							//alert(data);
+						}
+					}
+					ajax(data2);
+				});*/
+			}
+		}
+		ajax(data);
+	</script>
+</body>
+
+</html>
